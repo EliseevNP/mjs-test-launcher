@@ -54,5 +54,8 @@ export default class TestManager {
       }
     })));
     console.log(`${chalk.cyan('Tests count')}: ${successCount + failedCount}\n${chalk.green('Successfully passed')}: ${successCount}\n${chalk.red('Failed')}: ${failedCount}`)
+    if (failedCount > 0) {
+      process.exit(1);
+    }
   }
 }
