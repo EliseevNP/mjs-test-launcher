@@ -1,6 +1,6 @@
 {
   "name": "mjs-test-launcher",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Test launcher for mjs-mocha",
   "main": "index.mjs",
   "scripts": {
