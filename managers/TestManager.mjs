@@ -50,7 +50,7 @@ export default class TestManager {
         const { stdout } = e;
         /* test failed */
         failedCount ++;
-        console.log(stdout);
+        console.log(stdout || e);
       }
     })));
     console.log(`${chalk.cyan('Tests count')}: ${successCount + failedCount}\n${chalk.green('Successfully passed')}: ${successCount}\n${chalk.red('Failed')}: ${failedCount}`)
