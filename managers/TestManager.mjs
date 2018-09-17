@@ -47,10 +47,9 @@ export default class TestManager {
         successCount ++;
         console.log(stdout);
       } catch (e) {
-        const { stdout } = e;
         /* test failed */
         failedCount ++;
-        console.log(stdout || e);
+        console.log(e.stdout ? e.stdout : e, e.stderr ? e.stderr : '');
       }
     })));
     console.log(`${chalk.cyan('Tests count')}: ${successCount + failedCount}\n${chalk.green('Successfully passed')}: ${successCount}\n${chalk.red('Failed')}: ${failedCount}`)
