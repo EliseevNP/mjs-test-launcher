@@ -17,7 +17,7 @@
 - launcher.mjs:
 
 ```js 
-import launch from 'mjs-test-launcher';
+import launch from '@eliseevnp/mjs-test-launcher';
 
 launch({
   env: {
@@ -29,6 +29,7 @@ launch({
   },
   db: false,
   dir: './src/tests',
-  migrations_dir: './src/db'
+  migrations_dir: './src/db',
+  ext: ['mjs', 'js'] // all files ending with '*test.mjs' and '*test.js' will be tested
 });
 ```

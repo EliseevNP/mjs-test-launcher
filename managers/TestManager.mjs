@@ -7,7 +7,7 @@ import tce from '../util/tce';
 import makePath from '../util/makePath';
 
 export default class TestManager {
-  constructor({ dir = './build/tests', migrations_dir = './src/db', db = false, env = {} }) {
+  constructor({ dir = './build/tests', migrations_dir = './src/db', db = false, env = {}, ext = ['mjs'] }) {
     this.dir = dir;
     this.db = db;
     this.config = {
@@ -20,6 +20,7 @@ export default class TestManager {
     };
     this.migrations_dir = migrations_dir
     this.env = Object.keys(this.config).map(k => `${k}=${this.config[k]}`).join(' ');
+    this.ext = ext;
   }
 
   async prepareDb() {
@@ -36,13 +37,17 @@ export default class TestManager {
     console.log(chalk.cyan('Preparing tests...'));
 
     const testsPath = makePath(this.dir);
-    const tests = fs.readdirSync(testsPath).filter(i => i.endsWith('test.mjs'));
+    const tests = fs.readdirSync(testsPath).filter(i => {
+      return this.ext.some(ext => {
+        return i.endsWith(`test.${ext}`);
+      });
+    });
     let successCount = 0;
     let failedCount = 0;
 
     await tce(Promise.all(tests.map(async (t) => {
       try {
-        const { stdout } = await cp.exec(`${this.env} node --experimental-modules --no-warnings  ${this.dir}/${t}`);
+        const { stdout } = await cp.exec(`${this.env} node --es-module-specifier-resolution=node --experimental-modules --no-warnings  ${this.dir}/${t}`);
         /* test passed successfully */
         successCount ++;
         console.log(stdout);

@@ -1,12 +1,12 @@
 {
-  "name": "mjs-test-launcher",
-  "version": "1.0.7",
+  "name": "@eliseevnp/mjs-test-launcher",
+  "version": "1.0.0",
   "description": "Test launcher for mjs-mocha",
   "main": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Kseniya <kaprisa57@gmail.com>",
+  "author": "Nikita Eliseev <npeliseev@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.4.1",
